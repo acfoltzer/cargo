@@ -1449,6 +1449,7 @@ struct TomlTarget {
     #[serde(rename = "required-features")]
     required_features: Option<Vec<String>>,
     edition: Option<String>,
+    export_dynamic: Option<bool>,
 }
 
 #[derive(Clone)]

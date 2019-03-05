@@ -215,6 +215,7 @@ pub struct Target {
     for_host: bool,
     proc_macro: bool,
     edition: Edition,
+    export_dynamic: bool,
 }
 
 #[derive(Clone, PartialEq, Eq, PartialOrd, Ord)]
@@ -356,6 +357,7 @@ compact_debug! {
                 for_host
                 proc_macro
                 edition
+                export_dynamic
             )]
         }
     }
@@ -598,6 +600,7 @@ impl Target {
             edition,
             tested: true,
             benched: true,
+            export_dynamic: false,
         }
     }
 
@@ -751,6 +754,9 @@ impl Target {
     pub fn edition(&self) -> Edition {
         self.edition
     }
+    pub fn export_dynamic(&self) -> bool {
+        self.export_dynamic
+    }
     pub fn benched(&self) -> bool {
         self.benched
     }
@@ -879,6 +885,10 @@ impl Target {
     }
     pub fn set_edition(&mut self, edition: Edition) -> &mut Target {
         self.edition = edition;
+        self
+    }
+    pub fn set_export_dynamic(&mut self, export_dynamic: bool) -> &mut Target {
+        self.export_dynamic = export_dynamic;
         self
     }
     pub fn set_harness(&mut self, harness: bool) -> &mut Target {

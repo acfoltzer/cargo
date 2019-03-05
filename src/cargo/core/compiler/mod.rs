@@ -789,6 +789,10 @@ fn build_base_args<'a, 'cfg>(
         cmd.arg("-C").arg("prefer-dynamic");
     }
 
+    if unit.target.export_dynamic() {
+        cmd.arg("-Z").arg("export-dynamic");
+    }
+
     if opt_level.as_str() != "0" {
         cmd.arg("-C").arg(&format!("opt-level={}", opt_level));
     }
